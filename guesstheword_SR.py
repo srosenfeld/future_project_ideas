@@ -26,6 +26,7 @@ while guess != answer:
 
     if guess == answer:
         pg.alert("You got it! You made " + str(counter) + " guesses.")
+        break
     elif guess == "hint1":
         pg.alert(hint1[number])
     elif guess == "hint2":
