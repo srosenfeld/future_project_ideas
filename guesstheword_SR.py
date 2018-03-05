@@ -1,36 +1,39 @@
-import pyautogui as pg
 import random
 
-#These are the possible answers
-words = ["cat","dog","bird"]
+words = ["cat","dog","bird","flower","monkey"]
+hint1 = ["paws","paws","beak","stem","tail"]
+hint2 = ["meow","bark","chirp","petals","banana"]
 
-#Hints need to match order of words list
-hint1 = ["four paws", "four paws", "wings"]
-hint2 = ["whiskers","plays fetch","beak"]
+number = random.randint(0,4)
 
-#Initialize counter to zero at start
+secretword = words[number]
+
 counter = 0
 
-#Initialize guess to be blank
-guess = ""
-
-#Initialize random number
-number = random.randint(0,2)
-
-#Select random word
-answer = words[number]
-
-while guess != answer:
-    guess = pg.prompt("What word am I thinking of? Type 'hint1' or 'hint2' if you need help.")
+while True:
+    print("Guess the secret word! Type hint1, hint2, first letter, last letter, or length for a clue.")
+    guess = input()
     counter += 1
 
-    if guess == answer:
-        pg.alert("You got it! You made " + str(counter) + " guesses.")
+    if guess == secretword:
+        print("You win!")
+        print("It took you " + str(counter) + " guesses.")
         break
+
     elif guess == "hint1":
-        pg.alert(hint1[number])
+        print(hint1[number])
+
     elif guess == "hint2":
-        pg.alert(hint2[number])
+        print(hint2[number])
+
+    elif guess == "first letter":
+        print(secretword[0])
+
+    elif guess == "last letter":
+        print(secretword[-1])
+
+    elif guess == "length":
+        print(len(secretword))
+
     else:
-        pg.alert("Keep guessing!")
-        
+        print("Guess again!")
