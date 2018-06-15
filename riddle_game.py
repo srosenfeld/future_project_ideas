@@ -1,3 +1,4 @@
+#Here's a list of kid-friendly riddles: https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids
 guesscounter = 0
 while True:
     riddle1 = input("I'm tall when I'm young and I'm short when I'm old. What am I? \n")
