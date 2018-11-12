@@ -1,5 +1,4 @@
 #graphics credits belong to https://kenney.nl/assets/hexagon-pack
-import pygame
 import pgzrun
 import time
 import random
@@ -28,15 +27,21 @@ for k,v in large_map.items():
 alien = Actor('alien')
 alien.pos = 100, 56
 
+#Create a list to store all land tiles
+land = []
 
+for k,v in large_map.items():
+    itemlist = list(k)
+    coordinates = []
+    for i in itemlist:
+        coordinates.append(int(i))
+    act = Actor(v, center=coordinates)
+    land.append(act)
+
+        
 def draw():
     screen.clear()
-    for k,v in large_map.items():
-        itemlist = list(k)
-        coordinates = []
-        for i in itemlist:
-            coordinates.append(int(i))
-        act = Actor(v, center=coordinates)
+    for act in land:
         act.draw()
     alien.draw()
 
@@ -44,18 +49,21 @@ def update():
     speak()
     walky()
     if keyboard.left:
-        alien.x -= 3
+        for act in land:
+            act.x -= 3
     elif keyboard.right:
-        alien.x += 3
+        for act in land:
+            act.x += 3
 #    elif alien.collidepoint(Actor('dirt_02').x, Actor('dirt_02').y):
 #        print("found it")
         
 def walky():
     if keyboard.up:
-        alien.y -= 3
+        for act in land:
+            act.y -= 3
     elif keyboard.down:
-        alien.y += 3
-
+        for act in land:
+            act.y += 3
 def speak():
     if keyboard.a:
         print("hi!")
